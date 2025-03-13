@@ -1,0 +1,51 @@
+services:
+#  frontend:
+#    build:
+#      context: ./frontend
+#      dockerfile: Dockerfile
+#    ports:
+#      - "80:80"
+#    depends_on:
+#      - backend
+#    networks:
+#      - app-network
+
+  nestjs-api:
+    container_name: nestjs-api
+    restart: unless-stopped
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./backend:/app
+    environment:
+#      - NODE_ENV=production
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_NAME=db
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+#    networks:
+#      - app-network
+
+  db:
+    image: postgres:17-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+#    networks:
+#      - app-network
+
+#networks:
+#  app-network:
+#    driver: bridge
+
+volumes:
+  postgres_data:
