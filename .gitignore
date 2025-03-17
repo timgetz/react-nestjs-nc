@@ -50,10 +50,10 @@ frontend/dist/
 frontend/dist-ssr/
 
 # Backend specific
-backend/dist/
-backend/build/
-backend/tmp/
-backend/temp/
+backend-nestjs/dist/
+backend-nestjs/build/
+backend-nestjs/tmp/
+backend-nestjs/temp/
 
 # Docker
 .docker/
@@ -77,4 +77,4 @@ Thumbs.db
 **/.cache/
 **/.npm/
 **/.eslintcache
-**/.stylelintcache 
+**/.stylelintcache

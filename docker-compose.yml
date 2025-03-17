@@ -6,7 +6,7 @@ services:
 #    ports:
 #      - "80:80"
 #    depends_on:
-#      - backend
+#      - backend-nestjs
 #    networks:
 #      - app-network
 
@@ -14,10 +14,10 @@ services:
     container_name: nestjs-api
     restart: unless-stopped
     build:
-      context: ./backend
+      context: ./backend-nestjs
       dockerfile: Dockerfile.dev
     volumes:
-      - ./backend:/app
+      - ./backend-nestjs:/app
     environment:
 #      - NODE_ENV=production
       - DB_HOST=postgres
